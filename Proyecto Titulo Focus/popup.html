@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus</title>
+  <link rel="stylesheet" href="styles/popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="logo">🎯 Focus</h1>
+      <div class="status-indicator" id="statusIndicator">
+        <span class="status-text" id="statusText">Desactivado</span>
+      </div>
+    </header>
+
+    <!-- Modo Enfoque -->
+    <section class="focus-mode">
+      <div class="toggle-container">
+        <label class="toggle">
+          <input type="checkbox" id="focusModeToggle">
+          <span class="slider"></span>
+        </label>
+        <span class="toggle-label">Modo Enfoque</span>
+      </div>
+    </section>
+
+    <!-- Temporizador Pomodoro -->
+    <section class="pomodoro-section">
+      <h3>Temporizador</h3>
+      <div class="timer-display">
+        <div class="time" id="timerDisplay">25:00</div>
+        <div class="timer-controls">
+          <button class="btn btn-primary" id="startTimer">Iniciar</button>
+          <button class="btn btn-secondary" id="pauseTimer" disabled>Pausar</button>
+          <button class="btn btn-secondary" id="resetTimer">Reiniciar</button>
+        </div>
+      </div>
+      <div class="timer-mode" id="timerMode">Trabajo</div>
+    </section>
+
+    <!-- Lista de Tareas -->
+    <section class="tasks-section">
+      <div class="tasks-header">
+        <h3>Tareas de Hoy</h3>
+        <button class="btn-add" id="addTaskBtn">+</button>
+      </div>
+      <div class="task-input" id="taskInput" style="display: none;">
+        <input type="text" placeholder="Nueva tarea..." id="newTaskText">
+        <button class="btn btn-small" id="saveTask">Guardar</button>
+        <button class="btn btn-small" id="cancelTask">Cancelar</button>
+      </div>
+      <ul class="tasks-list" id="tasksList">
+        <!-- Las tareas se cargarán dinámicamente -->
+      </ul>
+    </section>
+
+    <!-- Configuración rápida -->
+    <section class="quick-settings">
+      <button class="btn btn-link" id="settingsBtn">⚙️ Configuración</button>
+    </section>
+  </div>
+
+  <script src="scripts/popup.js"></script>
+</body>
+</html>

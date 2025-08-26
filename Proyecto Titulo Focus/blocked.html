@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sitio Bloqueado - Focus</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    
+    .container {
+      max-width: 600px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    
+    .icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+    
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      font-weight: 300;
+    }
+    
+    .subtitle {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      opacity: 0.8;
+    }
+    
+    .blocked-domain {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 15px 25px;
+      border-radius: 25px;
+      margin: 20px 0;
+      font-size: 1.1em;
+      font-weight: 500;
+    }
+    
+    .message {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    
+    .actions {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+    
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn-primary {
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+    }
+    
+    .btn-primary:hover {
+      background: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    .motivation {
+      margin-top: 30px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      border-left: 4px solid rgba(255, 255, 255, 0.5);
+    }
+    
+    .motivation-title {
+      font-size: 1.2em;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .motivation-text {
+      font-style: italic;
+      opacity: 0.9;
+    }
+    
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 25px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 1.8em;
+      font-weight: bold;
+      display: block;
+    }
+    
+    .stat-label {
+      font-size: 0.9em;
+      opacity: 0.8;
+      margin-top: 5px;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .container {
+      animation: fadeIn 0.8s ease;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 1; }
+    }
+    
+    .icon {
+      animation: pulse 2s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">🎯</div>
+    <h1>¡Mantente Enfocado!</h1>
+    <p class="subtitle">Has intentado acceder a un sitio que distrae</p>
+    
+    <div class="blocked-domain" id="blockedDomain">
+      Sitio bloqueado
+    </div>
+    
+    <p class="message">
+      Tu modo enfoque está activo. Este sitio ha sido bloqueado para ayudarte a mantener la concentración en tus tareas importantes.
+    </p>
+    
+    <div class="actions">
+      <button class="btn btn-primary" id="openFocusBtn">
+        🚀 Abrir Focus
+      </button>
+      <button class="btn btn-secondary" id="goToProductiveBtn">
+        📚 Ir a sitio productivo
+      </button>
+    </div>
+    
+    <div class="motivation">
+      <div class="motivation-title">💡 Recordatorio</div>
+      <div class="motivation-text" id="motivationText">
+        Cada momento de concentración te acerca más a tus objetivos. ¡Tú puedes hacerlo!
+      </div>
+    </div>
+    
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-number" id="blockedCount">0</span>
+        <div class="stat-label">Sitios bloqueados hoy</div>
+      </div>
+      <div class="stat">
+        <span class="stat-number" id="focusTime">0m</span>
+        <div class="stat-label">Tiempo enfocado</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/blocked.js"></script>
+</body>
+</html>

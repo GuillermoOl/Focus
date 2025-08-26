@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuración - Focus</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .header h1 {
+      font-size: 2.5em;
+      color: #4a90e2;
+      margin-bottom: 10px;
+    }
+    
+    .header p {
+      color: #666;
+      font-size: 1.1em;
+    }
+    
+    .settings-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .settings-section {
+      margin-bottom: 40px;
+    }
+    
+    .settings-section:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section-title {
+      font-size: 1.4em;
+      color: #4a90e2;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .section-description {
+      color: #666;
+      margin-bottom: 20px;
+    }
+    
+    .input-group {
+      margin-bottom: 20px;
+    }
+    
+    .input-group label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1em;
+      transition: border-color 0.3s ease;
+    }
+    
+    .input-group input:focus {
+      outline: none;
+      border-color: #4a90e2;
+    }
+    
+    .time-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    
+    .sites-section {
+      margin-top: 20px;
+    }
+    
+    .add-site-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .add-site-container input {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+    
+    .sites-list {
+      max-height: 300px;
+      overflow-y: auto;
+      border: 2px solid #f0f0f0;
+      border-radius: 8px;
+      padding: 10px;
+    }
+    
+    .site-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      background: #f8f9fa;
+      margin-bottom: 8px;
+      border-radius: 6px;
+      border-left: 4px solid #4a90e2;
+    }
+    
+    .site-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .site-domain {
+      font-weight: 500;
+      color: #333;
+    }
+    
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+      background: #4a90e2;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #357abd;
+      transform: translateY(-2px);
+    }
+    
+    .btn-secondary {
+      background: #f0f0f0;
+      color: #666;
+    }
+    
+    .btn-secondary:hover {
+      background: #e0e0e0;
+    }
+    
+    .btn-danger {
+      background: #dc3545;
+      color: white;
+      padding: 6px 12px;
+      font-size: 0.9em;
+    }
+    
+    .btn-danger:hover {
+      background: #c82333;
+    }
+    
+    .btn-success {
+      background: #28a745;
+      color: white;
+    }
+    
+    .btn-success:hover {
+      background: #218838;
+    }
+    
+    .actions {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 2px solid #f0f0f0;
+    }
+    
+    .actions .btn {
+      margin: 0 10px;
+    }
+    
+    .success-message {
+      background: #d4edda;
+      border: 1px solid #c3e6cb;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      color: #155724;
+      display: none;
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: #4a90e2;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .back-link:hover {
+      color: #357abd;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .settings-card {
+      animation: fadeIn 0.6s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="#" class="back-link" id="backLink">← Volver a Focus</a>
+    
+    <div class="header">
+      <h1>🎯 Configuración de Focus</h1>
+      <p>Personaliza tu experiencia para maximizar tu concentración</p>
+    </div>
+    
+    <div class="success-message" id="successMessage">
+      ✅ Configuración guardada exitosamente
+    </div>
+    
+    <div class="settings-card">
+      <!-- Configuración del Temporizador -->
+      <div class="settings-section">
+        <h2 class="section-title">⏱️ Temporizador Pomodoro</h2>
+        <p class="section-description">
+          Ajusta los tiempos de trabajo y descanso según tus necesidades
+        </p>
+        
+        <div class="time-inputs">
+          <div class="input-group">
+            <label for="workTime">Tiempo de trabajo (minutos)</label>
+            <input type="number" id="workTime" min="5" max="120" value="25">
+          </div>
+          <div class="input-group">
+            <label for="breakTime">Tiempo de descanso (minutos)</label>
+            <input type="number" id="breakTime" min="1" max="30" value="5">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sitios Bloqueados -->
+      <div class="settings-section">
+        <h2 class="section-title">🚫 Sitios Bloqueados</h2>
+        <p class="section-description">
+          Administra la lista de sitios que se bloquearán durante el modo enfoque
+        </p>
+        
+        <div class="sites-section">
+          <div class="add-site-container">
+            <input type="text" id="newSiteInput" placeholder="ejemplo.com">
+            <button class="btn btn-primary" id="addSiteBtn">Agregar Sitio</button>
+          </div>
+          
+          <div class="sites-list" id="sitesList">
+            <!-- Los sitios se cargarán dinámicamente -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Notificaciones -->
+      <div class="settings-section">
+        <h2 class="section-title">🔔 Notificaciones</h2>
+        <p class="section-description">
+          Configura cómo y cuándo recibir recordatorios
+        </p>
+        
+        <div class="input-group">
+          <label>
+            <input type="checkbox" id="enableNotifications" checked>
+            Habilitar notificaciones del temporizador
+          </label>
+        </div>
+        
+        <div class="input-group">
+          <label>
+            <input type="checkbox" id="enableSounds" checked>
+            Reproducir sonidos de notificación
+          </label>
+        </div>
+      </div>
+      
+      <!-- Estadísticas -->
+      <div class="settings-section">
+        <h2 class="section-title">📊 Datos y Privacidad</h2>
+        <p class="section-description">
+          Administra tus datos y estadísticas de uso
+        </p>
+        
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+          <button class="btn btn-secondary" id="exportDataBtn">
+            📥 Exportar Datos
+          </button>
+          <button class="btn btn-secondary" id="resetStatsBtn">
+            🔄 Reiniciar Estadísticas
+          </button>
+          <button class="btn btn-danger" id="clearAllDataBtn">
+            🗑️ Borrar Todos los Datos
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="actions">
+      <button class="btn btn-success" id="saveSettingsBtn">
+        💾 Guardar Configuración
+      </button>
+      <button class="btn btn-secondary" id="resetToDefaultsBtn">
+        🔄 Restaurar por Defecto
+      </button>
+    </div>
+  </div>
+  
+  <script src="scripts/settings-ui.js"></script>
+  <script src="scripts/settings.js"></script>
+</body>
+</html>
